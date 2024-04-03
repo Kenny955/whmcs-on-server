@@ -90,9 +90,9 @@ Perfeito agora basta reiniciar o PHP-FPM para que ele reconheça a nova extença
    
 
 Crie uma pasta para o whmcs usando o comando abaixo.
-   `
+   ```
    mkdir /var/www/whmcs
-   `
+   ```
    
 6. Configure o Nginx para processar arquivos PHP
 
@@ -202,7 +202,7 @@ Pronto! Finalizamos aqui a parte da configuraçao do servidor Web e suas depende
     EXIT;
     ```
 
-O restante da instalaçao eu creio que você ja saiba, Lembrando que o WHMCS deve ser extraido dentro do diretorio /var/www/whmcs. Ok?
+O restante da instalaçao eu creio que você ja saiba, Lembrando que o WHMCS deve ser extraido dentro do diretorio `/var/www/whmcs` Ok?
 Este Tutorial Pode Ser atualizado posteriormente, a parte mais dificil mesmo para todos os que querem fazer desta forma é a questao do IonCube Loader,
 Mas isso foi resolvido neste tutorial. Caso você nao consiga fazer o tutorial pode me chamar no Discord `@alefwesley`.
 Nao recomendo que utilizem desta forma pois dificulta muito mais para os mais leigos, o recomendavel é a utilização de uma hospedagem apropriada, eu gosto de fazer experimentos rsrs. Bom ate mais!
