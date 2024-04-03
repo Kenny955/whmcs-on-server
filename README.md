@@ -103,51 +103,51 @@ Cole o codigo abaixo no arquivo que abrirá, lembre-se de alterar a linha onde e
  Feito isso precione CTRL + X no seu teclado e posteriormente, Y & ENTER para salvar o arquivo
 
 7. Use o comando abaixo para ativar o arquivo criado.
-   `
+   ```
    sudo ln -s /etc/nginx/sites-available/whmcs.conf /etc/nginx/sites-enabled/whmcs.conf
-   `
+   ```
 
    Verifique se há erros no nginx usando
-   `
+   ```
    sudo nginx -t
-   `
+   ```
 
    Caso nao haja erros reinicie o servidor Web.
-   `
+   ```
    systemctl restart nginx
-   `
+   ```
 
 9. Adicionando SSL
    Aqui atualize novamente os pacotes.
-   `
+   ```
    sudo apt update
-   `
+   ```
 
    Depois instale o CertBot para NGINX.
-   `
+   ```
     sudo apt install -y certbot
     sudo apt install -y python3-certbot-nginx
-   `
+   ```
 
    Agora é so voce instalar o certificado.
-   `
+   ```
    sudo certbot --nginx -d seudominio.com
-   `
+   ```
 
 11. Antes de mais nada vamos instalar outras 2 extençoes exigidas pelo WHMCS
 
-    `
+    ```
     sudo apt install php7.4-xml
-    `
+    ```
 
-   `
+   ```
    sudo apt install php7.4-gd
-   `
+   ```
 
    Agora basta reiniciar o php-fpm.
-   `
+   ```
    sudo service php7.4-fpm restart
-   `
+   ```
 
 Pronto! Finalizamos aqui a parte da configuraçao do servidor Web e suas dependencias.
 
