@@ -30,7 +30,7 @@ ufw allow 443
 apt install nginx -y
 ```
 
- Apos o programa ser instalado execute o comando abaixo.
+Apos o programa ser instalado execute o comando abaixo.
 
  ```
  systemctl enable nginx
@@ -41,20 +41,20 @@ apt install nginx -y
    apt-get install php7.4 -y
    ```
 
-   Após a instalação ser concluida execute o comando abaixo
+Após a instalação ser concluida execute o comando abaixo
 
    ```
    php --version
    ```
 
-   Você deve obter uma resposta como algo parecida com esta.
+Você deve obter uma resposta como algo parecida com esta.
 
 - `PHP 7.4.3 (cli) (built: Oct  6 2020 15:47:56) ( NTS )
    Copyright (c) The PHP Group
    Zend Engine v3.4.0, Copyright (c) Zend Technologies
    with Zend OPcache v7.4.3, Copyright (c), by Zend Technologies`
 
-   Se a resposta for positiva quer diser que seu php foi instalado corretamente com sucesso!
+Se a resposta for positiva quer diser que seu php foi instalado corretamente com sucesso!
 
 5. Instale PHP7.4-FPM e outras extensões
 
@@ -62,14 +62,34 @@ apt install nginx -y
    apt-get install php7.4-fpm php7.4-cli php7.4-mysql php7.4-curl php7.4-json -y
    ```
 
- Ao Fim da instalaçao execute o comando abaixo por garantia para que seu php-fpm inicie juntamente com o sistema operacional.
+Ao Fim da instalaçao execute o comando abaixo por garantia para que seu php-fpm inicie juntamente com o sistema operacional.
 
  ```
  systemctl enable php7.4-fpm
  ```
 
+Agora vamos baixar e instalar o IonCube Loader.
+ Baixando o Arquivo.
+   ```
+   sudo wget http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz
+   ```
+   ```
+   sudo tar xzf ioncube_loaders_lin_x86-64.tar.gz -C /usr/local
+   ```
+Use o comando abaixo e vá ate o fim do aquivo, precione espaço e cole o que esta na abaixo do comando.
+   ```
+   sudo nano /etc/php/7.4/fpm/php.ini
+   ```
+   ```
+   zend_extension = /usr/local/ioncube/ioncube_loader_lin_7.4.so
+   ```
+Perfeito agora basta reiniciar o PHP-FPM para que ele reconheça a nova extençao.
+   ```
+   sudo service php7.4-fpm restart
+   ```
+   
 
-   Crie uma pasta para o whmcs usando o comando abaixo.
+Crie uma pasta para o whmcs usando o comando abaixo.
    `
    mkdir /var/www/whmcs
    `
@@ -150,4 +170,40 @@ Cole o codigo abaixo no arquivo que abrirá, lembre-se de alterar a linha onde e
    ```
 
 Pronto! Finalizamos aqui a parte da configuraçao do servidor Web e suas dependencias.
+
+12. Instalando o MySQL server.
+    ```
+    sudo apt update
+    ```
+    ```
+    sudo apt install mysql-server
+    ```
+
+13. Criando Usuario e Banco de dados para o painel.
+    ```
+    mysql -u root -p
+    ```
+    ```
+    use mysql
+    ```
+    ```     
+    CREATE DATABASE whmcs;
+    ```
+    ```
+    CREATE USER 'whmcs'@'127.0.0.1' IDENTIFIED BY 'SUASENHA';
+    ```
+    ```
+    GRANT ALL PRIVILEGES ON whmcs.* TO 'whmcs'@'127.0.0.1';
+    ```
+    ```
+    FLUSH PRIVILEGES;
+    ```
+    ```
+    EXIT;
+    ```
+
+O restante da instalaçao eu creio que você ja saiba, Lembrando que o WHMCS deve ser extraido dentro do diretorio /var/www/whmcs. Ok?
+Este Tutorial Pode Ser atualizado posteriormente, a parte mais dificil mesmo para todos os que querem fazer desta forma é a questao do IonCube Loader,
+Mas isso foi resolvido neste tutorial. Caso você nao consiga fazer o tutorial pode me chamar no Discord `@alefwesley`.
+Nao recomendo que utilizem desta forma pois dificulta muito mais para os mais leigos, o recomendavel é a utilização de uma hospedagem apropriada, eu gosto de fazer experimentos rsrs. Bom ate mais!
 
