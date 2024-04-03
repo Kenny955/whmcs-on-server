@@ -9,9 +9,13 @@ Comandos:
 
 1. Atualizar pacotes do sistema:
 
-```sudo apt update```
+```
+sudo apt update
+```
 
-```sudo apt upgrade```
+```
+sudo apt upgrade
+```
 
 2. Liberar as portas:
 
@@ -22,18 +26,26 @@ ufw allow 443
 
 3. Instalar o NGINX
 
-```apt install nginx -y```
+```
+apt install nginx -y
+```
 
  Apos o programa ser instalado execute o comando abaixo.
 
- ```systemctl enable nginx```
+ ```
+ systemctl enable nginx
+ ```
 
 4. Instalar o php
-   ```apt-get install php7.4 -y```
+   ```
+   apt-get install php7.4 -y
+   ```
 
    Após a instalação ser concluida execute o comando abaixo
 
-   ```php --version```
+   ```
+   php --version
+   ```
 
    Você deve obter uma resposta como algo parecida com esta.
 
@@ -46,20 +58,30 @@ ufw allow 443
 
 5. Instale PHP7.4-FPM e outras extensões
 
-   ```apt-get install php7.4-fpm php7.4-cli php7.4-mysql php7.4-curl php7.4-json -y```
+   ```
+   apt-get install php7.4-fpm php7.4-cli php7.4-mysql php7.4-curl php7.4-json -y
+   ```
 
  Ao Fim da instalaçao execute o comando abaixo por garantia para que seu php-fpm inicie juntamente com o sistema operacional.
 
- ```systemctl enable php7.4-fpm```
+ ```
+ systemctl enable php7.4-fpm
+ ```
 
 
    Crie uma pasta para o whmcs usando o comando abaixo.
-   `mkdir /var/www/whmcs`
+   `
+   mkdir /var/www/whmcs
+   `
    
 6. Configure o Nginx para processar arquivos PHP
 
-   ```cd /etc/nginx/sites-available/```
-   ```nano whmcs.conf```
+   ```
+   cd /etc/nginx/sites-available/
+   ```
+   ```
+   nano whmcs.conf
+   ```
 
 Cole o codigo abaixo no arquivo que abrirá, lembre-se de alterar a linha onde esta `seudominio.com`.
 
@@ -81,33 +103,51 @@ Cole o codigo abaixo no arquivo que abrirá, lembre-se de alterar a linha onde e
  Feito isso precione CTRL + X no seu teclado e posteriormente, Y & ENTER para salvar o arquivo
 
 7. Use o comando abaixo para ativar o arquivo criado.
-   `sudo ln -s /etc/nginx/sites-available/whmcs.conf /etc/nginx/sites-enabled/whmcs.conf`
+   `
+   sudo ln -s /etc/nginx/sites-available/whmcs.conf /etc/nginx/sites-enabled/whmcs.conf
+   `
 
    Verifique se há erros no nginx usando
-   `sudo nginx -t`
+   `
+   sudo nginx -t
+   `
 
    Caso nao haja erros reinicie o servidor Web.
-   `systemctl restart nginx`
+   `
+   systemctl restart nginx
+   `
 
-8. Adicionando SSL
+9. Adicionando SSL
    Aqui atualize novamente os pacotes.
-   `sudo apt update`
+   `
+   sudo apt update
+   `
 
    Depois instale o CertBot para NGINX.
-   `sudo apt install -y certbot
-    sudo apt install -y python3-certbot-nginx`
+   `
+    sudo apt install -y certbot
+    sudo apt install -y python3-certbot-nginx
+   `
 
    Agora é so voce instalar o certificado.
-   `sudo certbot --nginx -d seudominio.com`
+   `
+   sudo certbot --nginx -d seudominio.com
+   `
 
-9. Antes de mais nada vamos instalar outras 2 extençoes exigidas pelo WHMCS
+11. Antes de mais nada vamos instalar outras 2 extençoes exigidas pelo WHMCS
 
-    `sudo apt install php7.4-xml`
+    `
+    sudo apt install php7.4-xml
+    `
 
-   `sudo apt install php7.4-gd`
+   `
+   sudo apt install php7.4-gd
+   `
 
    Agora basta reiniciar o php-fpm.
-   `sudo service php7.4-fpm restart`
+   `
+   sudo service php7.4-fpm restart
+   `
 
 Pronto! Finalizamos aqui a parte da configuraçao do servidor Web e suas dependencias.
 
